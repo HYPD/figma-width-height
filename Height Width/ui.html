@@ -1,0 +1,16 @@
+<h2>Rectangle Creator</h2>
+<form id="widthForm">
+  <p>Width: <input id="width" value="0" autofocus /></p>
+  <button id="resize" type="submit">Resize</button>
+  <button id="cancel">Cancel</button>
+</form>
+<script>
+  document.getElementById("widthForm").onsubmit = () => {
+    const textbox = document.getElementById("width");
+    const width = parseInt(textbox.value, 10);
+    parent.postMessage({ pluginMessage: { type: "resize", width } }, "*");
+  };
+  document.getElementById("cancel").onclick = () => {
+    parent.postMessage({ pluginMessage: { type: "cancel" } }, "*");
+  };
+</script>
